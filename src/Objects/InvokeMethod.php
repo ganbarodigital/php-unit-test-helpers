@@ -62,7 +62,7 @@ class InvokeMethod
 	 * @return mixed
 	 *         return value from calling $methodName on $object
 	 */
-	public function fromObject($object, $methodName, array $params = array())
+	public static function onObject($object, $methodName, array $params = array())
 	{
 		// make the method callable
 	    $refObj = new ReflectionObject($object);
