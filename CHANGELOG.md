@@ -2,6 +2,10 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 2.0.0 - Sat Jun 27 2015
+
 ### Backwards-Compatibility Breaks
 
 * Objects namespace is now ClassesAndObjects
