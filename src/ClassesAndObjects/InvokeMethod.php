@@ -54,7 +54,7 @@ class InvokeMethod
      *
      * Use ONLY for testing purposes
      *
-     * @param class  $classname
+     * @param class  $className
      *               class we want to call
      * @param string $methodName
      *               method we want to call
@@ -64,7 +64,7 @@ class InvokeMethod
      * @return mixed
      *         return value from calling $methodName on $classname
      */
-    private static function onClass($className, $methodName, array $params = array())
+    protected static function onClass($className, $methodName, array $params = array())
     {
         // make the method callable
         $refObj = new ReflectionClass($className);
@@ -86,7 +86,7 @@ class InvokeMethod
      *
      * Use ONLY for testing purposes
      *
-     * @param class  $classname
+     * @param string $className
      *               class we want to call
      * @param string $methodName
      *               method we want to call
