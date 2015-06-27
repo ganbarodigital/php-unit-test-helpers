@@ -54,7 +54,7 @@ class InvokeMethod
      *
      * Use ONLY for testing purposes
      *
-     * @param class  $className
+     * @param string $className
      *               class we want to call
      * @param string $methodName
      *               method we want to call
