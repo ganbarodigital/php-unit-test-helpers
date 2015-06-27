@@ -72,4 +72,24 @@ class InvokeMethod
 	    // call the method and return
 	    return $method->invokeArgs($object, $params);
 	}
+
+	/**
+	 * Call protected/private method of an object.
+	 *
+	 * Use ONLY for testing purposes
+	 *
+	 * @param object $object
+	 *               object we want to call
+	 * @param string $methodName
+	 *        		 method we want to call
+	 * @param array  $params
+	 *        		 args to pass into the method
+	 *
+	 * @return mixed
+	 *         return value from calling $methodName on $object
+	 */
+	public function __invoke($object, $methodName, array $params = array())
+	{
+		return static::onObject($object, $methodName, $params);
+	}
 }
