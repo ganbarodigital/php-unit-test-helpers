@@ -47,9 +47,9 @@ use RuntimeException;
 
 class E4xx_MethodIsNotStatic extends E4xx_UnitTestHelperException
 {
-	public function __construct($className, $methodName)
-	{
-		$msg = "method '{$className}::{$methodName}' is not declared as a static method";
-		parent::__construct(400, $msg);
-	}
+    public function __construct($className, $methodName)
+    {
+        $msg = "method '{$className}::{$methodName}' is not declared as a static method";
+        parent::__construct(400, $msg);
+    }
 }

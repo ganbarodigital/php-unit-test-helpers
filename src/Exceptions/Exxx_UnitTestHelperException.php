@@ -47,8 +47,8 @@ use RuntimeException;
 
 class Exxx_UnitTestHelperException extends RuntimeException
 {
-	public function __construct($code, $message)
-	{
-		parent::__construct($message, $code);
-	}
+    public function __construct($code, $message)
+    {
+        parent::__construct($message, $code);
+    }
 }
