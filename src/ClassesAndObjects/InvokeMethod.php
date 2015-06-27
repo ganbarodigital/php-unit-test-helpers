@@ -99,7 +99,7 @@ class InvokeMethod
     public static function onString($className, $methodName, array $params = array())
     {
         // for readability, we've put the actual functionality in the
-        // ::onClass() method
+        // onClass method
         return static::onClass($className, $methodName, $params);
     }
 
