@@ -64,7 +64,7 @@ class InvokeMethod
      * @return mixed
      *         return value from calling $methodName on $classname
      */
-    protected static function onClass($className, $methodName, array $params = array())
+    public static function onClass($className, $methodName, array $params = array())
     {
         // make the method callable
         $refObj = new ReflectionClass($className);
