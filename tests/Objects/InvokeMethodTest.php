@@ -47,20 +47,20 @@ use PHPUnit_Framework_TestCase;
 
 class InvokeMethodTest_TargetClass
 {
-	private function privateMethod($input)
-	{
-		return $input * 2;
-	}
+    private function privateMethod($input)
+    {
+        return $input * 2;
+    }
 
-	protected function protectedMethod($input)
-	{
-		return $input * 3;
-	}
+    protected function protectedMethod($input)
+    {
+        return $input * 3;
+    }
 
-	public function publicMethod($input)
-	{
-		return $input * 4;
-	}
+    public function publicMethod($input)
+    {
+        return $input * 4;
+    }
 }
 
 /**
@@ -68,113 +68,113 @@ class InvokeMethodTest_TargetClass
  */
 class InvokeMethodTest extends PHPUnit_Framework_TestCase
 {
-	/**
-	 * @covers ::onObject
-	 */
-	public function testCanStaticallyCallPrivateMethods()
-	{
-	    // ----------------------------------------------------------------
-	    // setup your test
+    /**
+     * @covers ::onObject
+     */
+    public function testCanStaticallyCallPrivateMethods()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
 
-	    $target = new InvokeMethodTest_TargetClass;
-	    $expectedResult = 42;
+        $target = new InvokeMethodTest_TargetClass;
+        $expectedResult = 42;
 
-	    // ----------------------------------------------------------------
-	    // perform the change
+        // ----------------------------------------------------------------
+        // perform the change
 
-	    $actualResult = InvokeMethod::onObject($target, 'privateMethod', [ 21 ]);
+        $actualResult = InvokeMethod::onObject($target, 'privateMethod', [ 21 ]);
 
-	    // ----------------------------------------------------------------
-	    // test the results
+        // ----------------------------------------------------------------
+        // test the results
 
-	    $this->assertEquals($expectedResult, $actualResult);
-	}
+        $this->assertEquals($expectedResult, $actualResult);
+    }
 
-	/**
-	 * @covers ::onObject
-	 */
-	public function testCanStaticallyCallProtectedMethods()
-	{
-	    // ----------------------------------------------------------------
-	    // setup your test
+    /**
+     * @covers ::onObject
+     */
+    public function testCanStaticallyCallProtectedMethods()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
 
-	    $target = new InvokeMethodTest_TargetClass;
-	    $expectedResult = 42;
+        $target = new InvokeMethodTest_TargetClass;
+        $expectedResult = 42;
 
-	    // ----------------------------------------------------------------
-	    // perform the change
+        // ----------------------------------------------------------------
+        // perform the change
 
-	    $actualResult = InvokeMethod::onObject($target, 'protectedMethod', [ 14 ]);
+        $actualResult = InvokeMethod::onObject($target, 'protectedMethod', [ 14 ]);
 
-	    // ----------------------------------------------------------------
-	    // test the results
+        // ----------------------------------------------------------------
+        // test the results
 
-	    $this->assertEquals($expectedResult, $actualResult);
-	}
+        $this->assertEquals($expectedResult, $actualResult);
+    }
 
-	/**
-	 * @covers ::onObject
-	 */
-	public function testCanStaticallyCallPublicMethods()
-	{
-	    // ----------------------------------------------------------------
-	    // setup your test
+    /**
+     * @covers ::onObject
+     */
+    public function testCanStaticallyCallPublicMethods()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
 
-	    $target = new InvokeMethodTest_TargetClass;
-	    $expectedResult = 40;
+        $target = new InvokeMethodTest_TargetClass;
+        $expectedResult = 40;
 
-	    // ----------------------------------------------------------------
-	    // perform the change
+        // ----------------------------------------------------------------
+        // perform the change
 
-	    $actualResult = InvokeMethod::onObject($target, 'publicMethod', [ 10 ]);
+        $actualResult = InvokeMethod::onObject($target, 'publicMethod', [ 10 ]);
 
-	    // ----------------------------------------------------------------
-	    // test the results
+        // ----------------------------------------------------------------
+        // test the results
 
-	    $this->assertEquals($expectedResult, $actualResult);
-	}
+        $this->assertEquals($expectedResult, $actualResult);
+    }
 
-	/**
-	 * @coversNone
-	 */
-	public function testCanInstantiate()
-	{
-	    // ----------------------------------------------------------------
-	    // perform the change
+    /**
+     * @coversNone
+     */
+    public function testCanInstantiate()
+    {
+        // ----------------------------------------------------------------
+        // perform the change
 
-	    $obj = new InvokeMethod();
+        $obj = new InvokeMethod();
 
-	    // ----------------------------------------------------------------
-	    // test the results
+        // ----------------------------------------------------------------
+        // test the results
 
-	    $this->assertTrue($obj instanceof InvokeMethod);
-	}
+        $this->assertTrue($obj instanceof InvokeMethod);
+    }
 
-	/**
-	 * @covers ::__invoke
-	 */
-	public function testCanUseAsObject()
-	{
-	    // ----------------------------------------------------------------
-	    // setup your test
+    /**
+     * @covers ::__invoke
+     */
+    public function testCanUseAsObject()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
 
-	    $obj    = new InvokeMethod();
-	    $target = new InvokeMethodTest_TargetClass();
-	    $expectedResult = 12;
+        $obj    = new InvokeMethod();
+        $target = new InvokeMethodTest_TargetClass();
+        $expectedResult = 12;
 
-	    // ----------------------------------------------------------------
-	    // perform the change
+        // ----------------------------------------------------------------
+        // perform the change
 
-	    $actualResult1 = $obj($target, 'privateMethod', [ 6 ]);
-	    $actualResult2 = $obj($target, 'protectedMethod', [ 4 ]);
-	    $actualResult3 = $obj($target, 'publicMethod', [ 3 ]);
+        $actualResult1 = $obj($target, 'privateMethod', [ 6 ]);
+        $actualResult2 = $obj($target, 'protectedMethod', [ 4 ]);
+        $actualResult3 = $obj($target, 'publicMethod', [ 3 ]);
 
-	    // ----------------------------------------------------------------
-	    // test the results
+        // ----------------------------------------------------------------
+        // test the results
 
-	    $this->assertEquals($expectedResult, $actualResult1);
-	    $this->assertEquals($expectedResult, $actualResult2);
-	    $this->assertEquals($expectedResult, $actualResult3);
-	}
+        $this->assertEquals($expectedResult, $actualResult1);
+        $this->assertEquals($expectedResult, $actualResult2);
+        $this->assertEquals($expectedResult, $actualResult3);
+    }
 
 }
