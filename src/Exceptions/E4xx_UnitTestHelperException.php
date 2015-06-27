@@ -34,62 +34,17 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   GanbaroDigital/UnitTestHelpers
+ * @package   UnitTestHelpers/Exceptions
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-data-containers
  */
 
-namespace GanbaroDigital\UnitTestHelpers\Objects;
+namespace GanbaroDigital\UnitTestHelpers\Exceptions;
 
-use ReflectionObject;
+use RuntimeException;
 
-class InvokeMethod
+class E4xx_UnitTestHelperException extends Exxx_UnitTestHelperException
 {
-    /**
-     * Call protected/private method of an object.
-     *
-     * Use ONLY for testing purposes
-     *
-     * @param object $object
-     *               object we want to call
-     * @param string $methodName
-     *               method we want to call
-     * @param array  $params
-     *               args to pass into the method
-     *
-     * @return mixed
-     *         return value from calling $methodName on $object
-     */
-    public static function onObject($object, $methodName, array $params = array())
-    {
-        // make the method callable
-        $refObj = new ReflectionObject($object);
-        $method = $refObj->getMethod($methodName);
-        $method->setAccessible(true);
-
-        // call the method and return
-        return $method->invokeArgs($object, $params);
-    }
-
-    /**
-     * Call protected/private method of an object.
-     *
-     * Use ONLY for testing purposes
-     *
-     * @param object $object
-     *               object we want to call
-     * @param string $methodName
-     *               method we want to call
-     * @param array  $params
-     *               args to pass into the method
-     *
-     * @return mixed
-     *         return value from calling $methodName on $object
-     */
-    public function __invoke($object, $methodName, array $params = array())
-    {
-        return static::onObject($object, $methodName, $params);
-    }
 }
