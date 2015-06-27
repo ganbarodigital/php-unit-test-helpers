@@ -34,147 +34,87 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   GanbaroDigital/UnitTestHelpers
+ * @package   UnitTestHelpers/Exceptions
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-data-containers
  */
 
-namespace GanbaroDigital\UnitTestHelpers\Objects;
+namespace GanbaroDigital\UnitTestHelpers\Exceptions;
 
 use PHPUnit_Framework_TestCase;
-
-class InvokeMethodTest_TargetClass
-{
-    private function privateMethod($input)
-    {
-        return $input * 2;
-    }
-
-    protected function protectedMethod($input)
-    {
-        return $input * 3;
-    }
-
-    public function publicMethod($input)
-    {
-        return $input * 4;
-    }
-}
+use RuntimeException;
 
 /**
- * @coversDefaultClass GanbaroDigital\UnitTestHelpers\Objects\InvokeMethod
+ * @coversDefaultClass GanbaroDigital\UnitTestHelpers\Exceptions\E4xx_MethodIsNotStatic
  */
-class InvokeMethodTest extends PHPUnit_Framework_TestCase
+class E4xx_MethodIsNotStaticTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @covers ::onObject
-     */
-    public function testCanStaticallyCallPrivateMethods()
-    {
-        // ----------------------------------------------------------------
-        // setup your test
-
-        $target = new InvokeMethodTest_TargetClass;
-        $expectedResult = 42;
-
-        // ----------------------------------------------------------------
-        // perform the change
-
-        $actualResult = InvokeMethod::onObject($target, 'privateMethod', [ 21 ]);
-
-        // ----------------------------------------------------------------
-        // test the results
-
-        $this->assertEquals($expectedResult, $actualResult);
-    }
-
-    /**
-     * @covers ::onObject
-     */
-    public function testCanStaticallyCallProtectedMethods()
-    {
-        // ----------------------------------------------------------------
-        // setup your test
-
-        $target = new InvokeMethodTest_TargetClass;
-        $expectedResult = 42;
-
-        // ----------------------------------------------------------------
-        // perform the change
-
-        $actualResult = InvokeMethod::onObject($target, 'protectedMethod', [ 14 ]);
-
-        // ----------------------------------------------------------------
-        // test the results
-
-        $this->assertEquals($expectedResult, $actualResult);
-    }
-
-    /**
-     * @covers ::onObject
-     */
-    public function testCanStaticallyCallPublicMethods()
-    {
-        // ----------------------------------------------------------------
-        // setup your test
-
-        $target = new InvokeMethodTest_TargetClass;
-        $expectedResult = 40;
-
-        // ----------------------------------------------------------------
-        // perform the change
-
-        $actualResult = InvokeMethod::onObject($target, 'publicMethod', [ 10 ]);
-
-        // ----------------------------------------------------------------
-        // test the results
-
-        $this->assertEquals($expectedResult, $actualResult);
-    }
-
-    /**
-     * @coversNone
+     * @covers ::__construct
      */
     public function testCanInstantiate()
     {
         // ----------------------------------------------------------------
+        // setup your test
+
+        $className  = 'alice';
+        $methodName = 'bob';
+
+        // ----------------------------------------------------------------
         // perform the change
 
-        $obj = new InvokeMethod();
+        $obj = new E4xx_MethodIsNotStatic($className, $methodName);
 
         // ----------------------------------------------------------------
         // test the results
 
-        $this->assertTrue($obj instanceof InvokeMethod);
+        $this->assertTrue($obj instanceof E4xx_MethodIsNotStatic);
     }
 
     /**
-     * @covers ::__invoke
+     * @covers GanbaroDigital\UnitTestHelpers\Exceptions\E4xx_UnitTestHelperException::__construct
      */
-    public function testCanUseAsObject()
+    public function testExtendsE4xx_UnitTestHelperException()
     {
         // ----------------------------------------------------------------
         // setup your test
 
-        $obj    = new InvokeMethod();
-        $target = new InvokeMethodTest_TargetClass();
-        $expectedResult = 12;
+        $className  = 'alice';
+        $methodName = 'bob';
 
         // ----------------------------------------------------------------
         // perform the change
 
-        $actualResult1 = $obj($target, 'privateMethod', [ 6 ]);
-        $actualResult2 = $obj($target, 'protectedMethod', [ 4 ]);
-        $actualResult3 = $obj($target, 'publicMethod', [ 3 ]);
+        $obj = new E4xx_MethodIsNotStatic($className, $methodName);
 
         // ----------------------------------------------------------------
         // test the results
 
-        $this->assertEquals($expectedResult, $actualResult1);
-        $this->assertEquals($expectedResult, $actualResult2);
-        $this->assertEquals($expectedResult, $actualResult3);
+        $this->assertTrue($obj instanceof E4xx_UnitTestHelperException);
+    }
+
+    /**
+     * @covers GanbaroDigital\UnitTestHelpers\Exceptions\Exxx_UnitTestHelperException::__construct
+     */
+    public function testExtendsExxx_UnitTestHelperException()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $className  = 'alice';
+        $methodName = 'bob';
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $obj = new E4xx_MethodIsNotStatic($className, $methodName);
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertTrue($obj instanceof Exxx_UnitTestHelperException);
     }
 
 }
